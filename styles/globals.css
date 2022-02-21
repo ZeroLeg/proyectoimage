@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.point {
+    padding: .2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border-radius: 900px;
+    color: white;
+    background-color: rgba(0,0,0, .4);
+    transform: translate(-50%, -50%);
+    transition: all ease .3s;
+}
+
+.point__container {
+    padding: .5rem;
+    position: relative;
+}
+
+.point__container::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-width: 3px;
+    border-radius: 900px;
+    width: 100%;
+    height: 100%;
+}
+
+.point svg {
+    width: 50px;
+    height: 50px;
+}
+
+.point:hover {
+    opacity: .3;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    padding: .3rem;
+    border-radius: 3px;
+    background-color: #ffffff;
+    transition: all ease .3s;
+    justify-content: space-between;
+}
+.navItem .img__container {
+    width: 70px;
+    height: 70px;
+}
+
+.navItem .img__container img {
+    object-fit: cover;
+    object-position: center;
+}
+.navItem__name {
+    padding: 0 2rem;
+    display: none;
+}
+
+.navItem.active .navItem__name {
+    display: inline-block;
+}
+
+.pointNav {
+    position: absolute !important;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    display: none;
+}
+
+.pointNav .active {
+    display: block;
+}
+
+.splide__arrow--prev{
+    top: -3rem !important;
+}
+.splide__arrow--next{
+    bottom: -3rem !important;
+}
