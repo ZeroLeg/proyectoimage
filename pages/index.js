@@ -1,13 +1,15 @@
-import Point from '../src/components/Point'
+import Point from '../src/components/Point/Point'
 import React, { useState, useEffect } from 'react'
-import { getPoints, getMaterials } from '../src/services'
+import { getMaterials } from '../src/services'
+import { getPoints } from '../src/components/Point/Point.service'
 import '@splidejs/splide/dist/css/splide.min.css'
 import PointNav from '../src/components/PointNav'
 
 export default function Home () {
   const [points, setPoints] = useState([])
+  const [materialsNav, setMaterialsNav] = useState(null)
+  const [currentNav, setCurrentNav] = useState(null)
 
-  const [materialsNav, setMaterialsNav] = useState([])
 
   const consumePoints = async () => {
     const apiData = await getPoints()
@@ -26,20 +28,22 @@ export default function Home () {
     consumeMaterials()
   }, [])
 
-  // console.log(materialsNav)
-
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2 '>
       <div className='relative'>
         <img src='/assets/base.png' />
 
-        {points && points.length > 0 ? points.map((pointData, i) => <Point id={i} key={i} point={pointData} />) : null}
+        {points && points.length > 0 ? points.map((pointData, i) => 
+          
+          <button type="button"  key={i} onClick={() => setCurrentNav(materialsNav[i].materials)} ><Point point={pointData} /></button>
+        
+        ) : null}
 
-        {materialsNav && materialsNav.length > 0
-          ? materialsNav.map((materialNav, i) =>
-            <PointNav key={i} items={materialNav.materials} />
-            )
-          : null}
+        
+
+          { 
+            currentNav !== null ?  <PointNav items={currentNav} /> : 'adios'
+          }
 
       </div>
     </div>

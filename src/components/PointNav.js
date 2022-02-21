@@ -2,7 +2,7 @@ import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
 function PointNav ({ items }) {
-  // console.log(items.length > 0);
+   //console.log(items);
   return (
     <Splide
       className='pointNav'
