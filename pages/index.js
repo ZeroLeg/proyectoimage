@@ -9,7 +9,8 @@ export default function Home () {
   const [points, setPoints] = useState([])
   const [materialsNav, setMaterialsNav] = useState(null)
   const [currentNav, setCurrentNav] = useState(null)
-
+  const [currentImage, setCurrentImage] = useState('')
+  
 
   const consumePoints = async () => {
     const apiData = await getPoints()
@@ -23,16 +24,20 @@ export default function Home () {
     // console.log(apiData)
   }
 
+
   useEffect(() => {
     consumePoints()
     consumeMaterials()
+    setCurrentImage('')
   }, [])
 
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2 '>
       <div className='relative'>
         <img src='/assets/base.png' />
+        <img src={currentImage} />
 
+        
         {points && points.length > 0 ? points.map((pointData, i) => 
           
           <button type="button"  key={i} onClick={() => setCurrentNav(materialsNav[i].materials)} ><Point point={pointData} /></button>
@@ -42,7 +47,7 @@ export default function Home () {
         
 
           { 
-            currentNav !== null ?  <PointNav items={currentNav} /> : 'adios'
+            currentNav !== null ?  <PointNav handleClick={(target) => setCurrentImage(materialsNav[i].materials) } items={currentNav} /> : ''
           }
 
       </div>

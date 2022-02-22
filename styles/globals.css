@@ -77,7 +77,7 @@
 }
 
 .pointNav .active {
-    display: block;
+    display: flex;
 }
 
 .splide__arrow--prev{
